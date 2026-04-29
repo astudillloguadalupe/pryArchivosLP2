@@ -69,7 +69,7 @@ namespace pryArchivosLP2
             AD.Dispose();
             return c;
         }
-        public Decimal DeudaClientes()
+        public Decimal TotalDeuda()
         {
             string datoLeido;
             string[] vecDatos = new string[4];
@@ -86,6 +86,134 @@ namespace pryArchivosLP2
             AD.Dispose();
             return Total;
         }
+
+        public Decimal Promedio()
+        {
+            String datoLeido;
+            string[] vecDatos = new string[4];
+            Decimal total = 0;
+            int c = 0;
+            Decimal promedio = 0;
+
+            StreamReader AD = new StreamReader(NomArchivo);
+            datoLeido = AD.ReadLine();
+
+            while (datoLeido != null)
+            {
+                c++;
+                vecDatos = datoLeido.Split(';');
+                total = total + Convert.ToDecimal(vecDatos[2]);
+                if (c > 0)
+                {
+                    promedio = Math.Round(total / Convert.ToDecimal(vecDatos[2]));//Redondea p/tener 2 decimales
+                }
+
+                datoLeido = AD.ReadLine();
+            }
+            AD.Close();
+            AD.Dispose();
+
+            return total / c;
+        }
+
+        public Int32 CantidadDeudores()
+        {
+            String datoLeido;
+            string[] vecDatos = new string[4];
+            int cantDeud = 0;
+
+            StreamReader AD = new StreamReader(NomArchivo);
+            datoLeido = AD.ReadLine();
+
+            while (datoLeido != null && Convert.ToInt32(vecDatos[2]) > 0)
+            {
+                vecDatos = datoLeido.Split(';');
+                cantDeud++;
+                datoLeido = AD.ReadLine();
+
+            }
+
+            AD.Close();
+            AD.Dispose();
+
+            return cantDeud;
+        }
+
+        public Decimal PromedioDeudores()
+        {
+            String datoLeido;
+            string[] vecDatos = new string[4];
+            Decimal total = 0;
+            int cant = 0;
+            Decimal promedio = 0;
+
+            StreamReader AD = new StreamReader(NomArchivo);
+            datoLeido = AD.ReadLine();
+
+            while (datoLeido != null)
+            {
+                cant++;
+                vecDatos = datoLeido.Split(';');
+                total = total + Convert.ToDecimal(vecDatos[2]);
+                if (cant > 0)
+                {
+                    promedio = Math.Round(total / Convert.ToDecimal(vecDatos[2]));//Redondea p/tener 2 decimales
+                }
+
+                datoLeido = AD.ReadLine();
+            }
+            AD.Close();
+            AD.Dispose();
+
+            return total / cant;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

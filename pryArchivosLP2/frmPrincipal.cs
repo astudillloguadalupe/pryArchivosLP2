@@ -33,5 +33,11 @@ namespace pryArchivosLP2
             frmListadoClientes frmListadoClientes = new frmListadoClientes();
             frmListadoClientes.ShowDialog();
         }
+
+        private void listadoClientesDeudoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDeudores frmDeudores = new frmDeudores();
+            frmDeudores.ShowDialog();
+        }
     }
 }

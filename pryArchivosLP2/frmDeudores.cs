@@ -10,18 +10,20 @@ using System.Windows.Forms;
 
 namespace pryArchivosLP2
 {
-    public partial class frmListadoClientes : Form
+    public partial class frmDeudores : Form
     {
-        public frmListadoClientes()
+        public frmDeudores()
         {
             InitializeComponent();
         }
+
         clsArchivo Arc = new clsArchivo();
-        private void frmListadoClientes_Load(object sender, EventArgs e)
+        private void frmDeudores_Load(object sender, EventArgs e)
         {
             Arc.Listar(dgvClientes);
-            lblCantRTA.Text = Arc.CantidadClientes().ToString();
-            lblTotalDeudaRTA.Text = Arc.TotalDeuda().ToString();
+            lblTotalDeudaRTA.Text = "$" + Arc.TotalDeuda().ToString();
+            lblCantidadRTA.Text = Arc.CantidadDeudores().ToString();
+            lblPromedioRTA.Text = "$" + Arc.PromedioDeudores().ToString();
         }
     }
 }
