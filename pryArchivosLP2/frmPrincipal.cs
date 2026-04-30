@@ -39,5 +39,10 @@ namespace pryArchivosLP2
             frmDeudores frmDeudores = new frmDeudores();
             frmDeudores.ShowDialog();
         }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

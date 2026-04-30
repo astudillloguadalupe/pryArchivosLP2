@@ -29,25 +29,25 @@
         private void InitializeComponent()
         {
             this.grbConsulta = new System.Windows.Forms.GroupBox();
-            this.btnListar = new System.Windows.Forms.Button();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDeuda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLimite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblPromedioRTA = new System.Windows.Forms.Label();
             this.lblCantRTA = new System.Windows.Forms.Label();
             this.lblPromedio = new System.Windows.Forms.Label();
             this.lblTotalDeuda = new System.Windows.Forms.Label();
             this.lblTotalDeudaRTA = new System.Windows.Forms.Label();
             this.lblClientes = new System.Windows.Forms.Label();
-            this.colLimite = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDeuda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReportar = new System.Windows.Forms.Button();
             this.grbConsulta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // grbConsulta
             // 
-            this.grbConsulta.Controls.Add(this.btnListar);
+            this.grbConsulta.Controls.Add(this.btnReportar);
             this.grbConsulta.Controls.Add(this.dgvClientes);
             this.grbConsulta.Controls.Add(this.lblPromedioRTA);
             this.grbConsulta.Controls.Add(this.lblCantRTA);
@@ -55,22 +55,12 @@
             this.grbConsulta.Controls.Add(this.lblTotalDeuda);
             this.grbConsulta.Controls.Add(this.lblTotalDeudaRTA);
             this.grbConsulta.Controls.Add(this.lblClientes);
-            this.grbConsulta.Location = new System.Drawing.Point(1, 8);
+            this.grbConsulta.Location = new System.Drawing.Point(1, 2);
             this.grbConsulta.Name = "grbConsulta";
-            this.grbConsulta.Size = new System.Drawing.Size(494, 414);
+            this.grbConsulta.Size = new System.Drawing.Size(494, 420);
             this.grbConsulta.TabIndex = 14;
             this.grbConsulta.TabStop = false;
             this.grbConsulta.Text = "Consulta de Datos";
-            // 
-            // btnListar
-            // 
-            this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListar.Location = new System.Drawing.Point(401, 372);
-            this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(75, 27);
-            this.btnListar.TabIndex = 12;
-            this.btnListar.Text = "Listar";
-            this.btnListar.UseVisualStyleBackColor = true;
             // 
             // dgvClientes
             // 
@@ -86,6 +76,27 @@
             this.dgvClientes.RowHeadersVisible = false;
             this.dgvClientes.Size = new System.Drawing.Size(470, 182);
             this.dgvClientes.TabIndex = 5;
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Código";
+            this.Codigo.Name = "Codigo";
+            // 
+            // colNombre
+            // 
+            this.colNombre.HeaderText = "Nombre";
+            this.colNombre.Name = "colNombre";
+            this.colNombre.Width = 170;
+            // 
+            // colDeuda
+            // 
+            this.colDeuda.HeaderText = "Deuda";
+            this.colDeuda.Name = "colDeuda";
+            // 
+            // colLimite
+            // 
+            this.colLimite.HeaderText = "Limite Crédito";
+            this.colLimite.Name = "colLimite";
             // 
             // lblPromedioRTA
             // 
@@ -144,26 +155,15 @@
             this.lblClientes.TabIndex = 8;
             this.lblClientes.Text = "Cantidad Clientes:";
             // 
-            // colLimite
+            // btnReportar
             // 
-            this.colLimite.HeaderText = "Limite Crédito";
-            this.colLimite.Name = "colLimite";
-            // 
-            // colDeuda
-            // 
-            this.colDeuda.HeaderText = "Deuda";
-            this.colDeuda.Name = "colDeuda";
-            // 
-            // colNombre
-            // 
-            this.colNombre.HeaderText = "Nombre";
-            this.colNombre.Name = "colNombre";
-            this.colNombre.Width = 170;
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Código";
-            this.Codigo.Name = "Codigo";
+            this.btnReportar.Location = new System.Drawing.Point(401, 387);
+            this.btnReportar.Name = "btnReportar";
+            this.btnReportar.Size = new System.Drawing.Size(75, 27);
+            this.btnReportar.TabIndex = 13;
+            this.btnReportar.Text = "Reportar";
+            this.btnReportar.UseVisualStyleBackColor = true;
+            this.btnReportar.Click += new System.EventHandler(this.btnReportar_Click);
             // 
             // frmListadoClientes
             // 
@@ -186,7 +186,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox grbConsulta;
-        private System.Windows.Forms.Button btnListar;
         private System.Windows.Forms.DataGridView dgvClientes;
         private System.Windows.Forms.Label lblPromedioRTA;
         private System.Windows.Forms.Label lblCantRTA;
@@ -198,5 +197,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDeuda;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLimite;
+        private System.Windows.Forms.Button btnReportar;
     }
 }

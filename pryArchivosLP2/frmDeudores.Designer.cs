@@ -74,6 +74,7 @@
             this.dgvClientes.RowHeadersVisible = false;
             this.dgvClientes.Size = new System.Drawing.Size(470, 182);
             this.dgvClientes.TabIndex = 5;
+            this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
             // 
             // colCodigo
             // 
@@ -113,6 +114,7 @@
             this.lblCantidadRTA.Name = "lblCantidadRTA";
             this.lblCantidadRTA.Size = new System.Drawing.Size(94, 26);
             this.lblCantidadRTA.TabIndex = 9;
+            this.lblCantidadRTA.Click += new System.EventHandler(this.lblCantidadRTA_Click);
             // 
             // lblPromDeuda
             // 

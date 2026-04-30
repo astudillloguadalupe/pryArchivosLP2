@@ -25,5 +25,15 @@ namespace pryArchivosLP2
             lblCantidadRTA.Text = Arc.CantidadDeudores().ToString();
             lblPromedioRTA.Text = "$" + Arc.PromedioDeudores().ToString();
         }
+
+        private void lblCantidadRTA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

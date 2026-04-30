@@ -54,7 +54,7 @@ namespace pryArchivosLP2
 
 
         public Int32 CantidadClientes()
-        {    
+        {
             string datoLeido;
             Int32 c = 0;
 
@@ -79,7 +79,7 @@ namespace pryArchivosLP2
             while (datoLeido != null)
             {
                 vecDatos = datoLeido.Split(';');
-                Total += Convert.ToDecimal(vecDatos[2]);
+                Total = Total +Convert.ToDecimal(vecDatos[2]);
                 datoLeido = AD.ReadLine();
             }
             AD.Close();
@@ -92,9 +92,8 @@ namespace pryArchivosLP2
             String datoLeido;
             string[] vecDatos = new string[4];
             Decimal total = 0;
-            int c = 0;
-            Decimal promedio = 0;
-
+            Int32 c = 0;
+          
             StreamReader AD = new StreamReader(NomArchivo);
             datoLeido = AD.ReadLine();
 
@@ -103,17 +102,14 @@ namespace pryArchivosLP2
                 c++;
                 vecDatos = datoLeido.Split(';');
                 total = total + Convert.ToDecimal(vecDatos[2]);
-                if (c > 0)
-                {
-                    promedio = Math.Round(total / Convert.ToDecimal(vecDatos[2]));//Redondea p/tener 2 decimales
-                }
+                
 
                 datoLeido = AD.ReadLine();
             }
             AD.Close();
             AD.Dispose();
 
-            return total / c;
+            return total/c;
         }
 
         public Int32 CantidadDeudores()
@@ -141,12 +137,11 @@ namespace pryArchivosLP2
 
         public Decimal PromedioDeudores()
         {
-            String datoLeido;
+            string datoLeido;
             string[] vecDatos = new string[4];
             Decimal total = 0;
-            int cant = 0;
-            Decimal promedio = 0;
-
+            Int32 cant = 0;
+           
             StreamReader AD = new StreamReader(NomArchivo);
             datoLeido = AD.ReadLine();
 
@@ -155,11 +150,6 @@ namespace pryArchivosLP2
                 cant++;
                 vecDatos = datoLeido.Split(';');
                 total = total + Convert.ToDecimal(vecDatos[2]);
-                if (cant > 0)
-                {
-                    promedio = Math.Round(total / Convert.ToDecimal(vecDatos[2]));//Redondea p/tener 2 decimales
-                }
-
                 datoLeido = AD.ReadLine();
             }
             AD.Close();
@@ -168,7 +158,57 @@ namespace pryArchivosLP2
             return total / cant;
         }
 
+        public void GenerarReporte()
+        {
+            string datoLeido;
+            string[] vecDatos = new string[4];
+            Decimal total = 0;
+            Int32 cantidad = 0;
 
+            StreamWriter Reporte = new StreamWriter("Reporte.csv",false);
+
+            Reporte.WriteLine("Listado de clientes");
+            Reporte.WriteLine("");
+            Reporte.WriteLine("Codigo,Nombre,deuda,limite");
+            //abrir
+            StreamReader AD = new StreamReader(NomArchivo);
+            //leer
+            datoLeido = AD.ReadLine();
+      
+
+            while (datoLeido != null)
+            {
+                vecDatos = datoLeido.Split(';');
+
+                Reporte.Write(vecDatos[0]);
+                Reporte.Write(";");
+                Reporte.Write(vecDatos[1]);
+                Reporte.Write(";");
+                Reporte.Write(vecDatos[2]);
+                Reporte.Write(";");
+                Reporte.WriteLine(vecDatos[3]);
+
+                datoLeido = AD.ReadLine();
+                cantidad++;
+                total= total+Convert.ToDecimal (vecDatos[2]);
+            }
+            //cerrar
+            AD.Close();
+            AD.Dispose();
+            Reporte.WriteLine(); //esapacio entre medio
+            Reporte.Write("TotalDeuda: ; ;");
+            Reporte.WriteLine(total);
+
+            Reporte.Write("Cantidad de clientes ; ;");
+            Reporte.WriteLine(cantidad);
+
+            Reporte.Write("Promedio de deuda ; ;");
+            Reporte.WriteLine(total/cantidad);
+
+            Reporte.Close();
+            Reporte.Dispose();
+           
+        }
 
 
 

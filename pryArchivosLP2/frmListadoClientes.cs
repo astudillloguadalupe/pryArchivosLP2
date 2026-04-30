@@ -22,6 +22,13 @@ namespace pryArchivosLP2
             Arc.Listar(dgvClientes);
             lblCantRTA.Text = Arc.CantidadClientes().ToString();
             lblTotalDeudaRTA.Text = Arc.TotalDeuda().ToString();
+            lblPromedioRTA.Text= Arc.PromedioDeudores().ToString();
+        }
+
+        private void btnReportar_Click(object sender, EventArgs e)
+        {
+           Arc.GenerarReporte();
+            MessageBox.Show("Reporte generado correctamente");
         }
     }
 }
