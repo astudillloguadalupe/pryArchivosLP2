@@ -16,19 +16,26 @@ namespace pryArchivosLP2
         {
             InitializeComponent();
         }
-        clsArchivo Arc = new clsArchivo();
+        clsArchivo Archi = new clsArchivo();
         private void frmListadoClientes_Load(object sender, EventArgs e)
         {
-            Arc.Listar(dgvClientes);
-            lblCantRTA.Text = Arc.CantidadClientes().ToString();
-            lblTotalDeudaRTA.Text = Arc.TotalDeuda().ToString();
-            lblPromedioRTA.Text= Arc.PromedioDeudores().ToString();
+            Archi.Listar(dgvClientes);
+            lblCantRTA.Text = Archi.CantidadClientes().ToString();
+            lblTotalDeudaRTA.Text = Archi.TotalDeuda().ToString();
+            lblPromedioRTA.Text= Archi.PromedioDeudores().ToString();
         }
 
         private void btnReportar_Click(object sender, EventArgs e)
         {
-           Arc.GenerarReporte();
+           Archi.GenerarReporte();
             MessageBox.Show("Reporte generado correctamente");
+        }
+
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            Archi.OrdenarArchivo();
+            MessageBox.Show("Archivo Ordenado");
+            Archi.Listar(dgvClientes);
         }
     }
 }

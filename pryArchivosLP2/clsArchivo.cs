@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +13,89 @@ namespace pryArchivosLP2
     internal class clsArchivo
     {
         public string NomArchivo = "Clientes.csv";
+
+        private struct RegCliente
+        {
+            public Int32 Codigo;
+            public String Nombre;
+            public Decimal Deuda;
+            public Decimal Limite;
+        }
+
+        private RegCliente[] VecClientes = new RegCliente[15000];
+        private Int32 IND = 0;
+
+        private void CargarVector()
+        {
+            string datoLeido;
+            string[] vecDatos = new string[4];
+            IND = 0;
+
+            StreamReader AD = new StreamReader(NomArchivo);
+            datoLeido = AD.ReadLine();
+            
+
+            while (datoLeido != null)
+            {
+                vecDatos = datoLeido.Split(';');
+
+                VecClientes[IND].Codigo=Convert.ToInt32(vecDatos[0]);
+                VecClientes[IND].Nombre = vecDatos[1];
+                VecClientes[IND].Deuda = Convert.ToDecimal(vecDatos[2]);
+                VecClientes[IND].Limite = Convert.ToDecimal(vecDatos[3]);
+                IND++;  
+                datoLeido = AD.ReadLine();
+            }
+            AD.Close();
+            AD.Dispose();
+        }
+
+        private void OrdenarVerctor()
+        {
+            RegCliente aux;
+            for (Int32 c = 0; c < IND - 1; c++)
+            {
+                for (Int32 i = 0; i < IND - 1; i++)
+                {
+                    if (VecClientes[i].Codigo > VecClientes[i + 1].Codigo)
+                    {
+                        aux = VecClientes[i];
+                        VecClientes[i] = VecClientes[i + 1];
+                        VecClientes[i + 1] = aux;
+                    }
+                }
+
+
+            }
+            
+        }
+
+        private void ReescribirArchivo()
+        {
+            StreamWriter AD = new StreamWriter(NomArchivo, false);
+            for (Int32 i = 0; i < IND; i++)
+            {
+                //CARGAR O LEER
+                AD.Write(VecClientes[i].Codigo);
+                AD.Write(";"); //separador de campos
+                AD.Write(VecClientes[i].Nombre);
+                AD.Write(";");
+                AD.Write(VecClientes[i].Deuda);
+                AD.Write(";");
+                AD.Write(VecClientes[i].Limite);
+            }
+                //CERRAR
+                AD.Close();
+                AD.Dispose();
+        }
+        public void OrdenarArchivo()
+        {
+            CargarVector();
+            OrdenarArchivo();
+            ReescribirArchivo();
+        }
+
+
 
         public void Grabar(string cod, string nom, string deu, string lim)
         {

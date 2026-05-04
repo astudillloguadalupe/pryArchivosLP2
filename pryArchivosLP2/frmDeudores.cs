@@ -17,13 +17,13 @@ namespace pryArchivosLP2
             InitializeComponent();
         }
 
-        clsArchivo Arc = new clsArchivo();
+        clsArchivo Archi= new clsArchivo();
         private void frmDeudores_Load(object sender, EventArgs e)
         {
-            Arc.Listar(dgvClientes);
-            lblTotalDeudaRTA.Text = "$" + Arc.TotalDeuda().ToString();
-            lblCantidadRTA.Text = Arc.CantidadDeudores().ToString();
-            lblPromedioRTA.Text = "$" + Arc.PromedioDeudores().ToString();
+            Archi.Listar(dgvClientes);
+            lblCantidadRTA.Text = Archi.CantidadClientes().ToString();
+            lblTotalDeudaRTA.Text = Archi.TotalDeuda().ToString();
+            lblPromedioRTA.Text = Archi.PromedioDeudores().ToString();
         }
 
         private void lblCantidadRTA_Click(object sender, EventArgs e)

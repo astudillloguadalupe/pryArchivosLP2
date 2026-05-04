@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grbConsulta = new System.Windows.Forms.GroupBox();
+            this.btnReportar = new System.Windows.Forms.Button();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,13 +41,14 @@
             this.lblTotalDeuda = new System.Windows.Forms.Label();
             this.lblTotalDeudaRTA = new System.Windows.Forms.Label();
             this.lblClientes = new System.Windows.Forms.Label();
-            this.btnReportar = new System.Windows.Forms.Button();
+            this.btnOrdenar = new System.Windows.Forms.Button();
             this.grbConsulta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // grbConsulta
             // 
+            this.grbConsulta.Controls.Add(this.btnOrdenar);
             this.grbConsulta.Controls.Add(this.btnReportar);
             this.grbConsulta.Controls.Add(this.dgvClientes);
             this.grbConsulta.Controls.Add(this.lblPromedioRTA);
@@ -61,6 +63,16 @@
             this.grbConsulta.TabIndex = 14;
             this.grbConsulta.TabStop = false;
             this.grbConsulta.Text = "Consulta de Datos";
+            // 
+            // btnReportar
+            // 
+            this.btnReportar.Location = new System.Drawing.Point(401, 387);
+            this.btnReportar.Name = "btnReportar";
+            this.btnReportar.Size = new System.Drawing.Size(75, 27);
+            this.btnReportar.TabIndex = 13;
+            this.btnReportar.Text = "Reportar";
+            this.btnReportar.UseVisualStyleBackColor = true;
+            this.btnReportar.Click += new System.EventHandler(this.btnReportar_Click);
             // 
             // dgvClientes
             // 
@@ -155,15 +167,15 @@
             this.lblClientes.TabIndex = 8;
             this.lblClientes.Text = "Cantidad Clientes:";
             // 
-            // btnReportar
+            // btnOrdenar
             // 
-            this.btnReportar.Location = new System.Drawing.Point(401, 387);
-            this.btnReportar.Name = "btnReportar";
-            this.btnReportar.Size = new System.Drawing.Size(75, 27);
-            this.btnReportar.TabIndex = 13;
-            this.btnReportar.Text = "Reportar";
-            this.btnReportar.UseVisualStyleBackColor = true;
-            this.btnReportar.Click += new System.EventHandler(this.btnReportar_Click);
+            this.btnOrdenar.Location = new System.Drawing.Point(301, 389);
+            this.btnOrdenar.Name = "btnOrdenar";
+            this.btnOrdenar.Size = new System.Drawing.Size(75, 23);
+            this.btnOrdenar.TabIndex = 15;
+            this.btnOrdenar.Text = "Ordenar";
+            this.btnOrdenar.UseVisualStyleBackColor = true;
+            this.btnOrdenar.Click += new System.EventHandler(this.btnOrdenar_Click);
             // 
             // frmListadoClientes
             // 
@@ -198,5 +210,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colDeuda;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLimite;
         private System.Windows.Forms.Button btnReportar;
+        private System.Windows.Forms.Button btnOrdenar;
     }
 }
