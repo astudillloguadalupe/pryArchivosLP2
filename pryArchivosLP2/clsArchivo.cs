@@ -50,7 +50,7 @@ namespace pryArchivosLP2
             AD.Dispose();
         }
 
-        private void OrdenarVerctor()
+        private void OrdenarVector()
         {
             RegCliente aux;
             for (Int32 c = 0; c < IND - 1; c++)
@@ -91,7 +91,7 @@ namespace pryArchivosLP2
         public void OrdenarArchivo()
         {
             CargarVector();
-            OrdenarArchivo();
+            OrdenarVector();
             ReescribirArchivo();
         }
 
@@ -173,73 +173,104 @@ namespace pryArchivosLP2
 
         public Decimal Promedio()
         {
+            Int32 cantidad = CantidadClientes();
+
+            if (cantidad == 0)
+            {
+                return 0;
+            }
+
+            return TotalDeuda() / cantidad;
+        }
+        public void ListarDeudores(DataGridView Grilla)
+        {
             String datoLeido;
             string[] vecDatos = new string[4];
-            Decimal total = 0;
-            Int32 c = 0;
-          
+
+            StreamReader AD = new StreamReader(NomArchivo);
+            datoLeido = AD.ReadLine();
+
+            Grilla.Rows.Clear();
+
+            while (datoLeido != null)
+            {
+                vecDatos = datoLeido.Split(';');
+
+                if (Convert.ToDecimal(vecDatos[2]) > 0)
+                {
+                    Grilla.Rows.Add(vecDatos[0], vecDatos[1], vecDatos[2], vecDatos[3]);
+                }
+
+                datoLeido = AD.ReadLine();
+            }
+
+            AD.Close();
+            AD.Dispose();
+        }
+        public Int32 CantidadDeudores()
+        {
+            String datoLeido;
+            string[] vecDatos = new string[4];
+            Int32 cantDeud = 0;
+
             StreamReader AD = new StreamReader(NomArchivo);
             datoLeido = AD.ReadLine();
 
             while (datoLeido != null)
             {
-                c++;
                 vecDatos = datoLeido.Split(';');
-                total = total + Convert.ToDecimal(vecDatos[2]);
-                
+
+                if (Convert.ToDecimal(vecDatos[2]) > 0)
+                {
+                    cantDeud++;
+                }
 
                 datoLeido = AD.ReadLine();
-            }
-            AD.Close();
-            AD.Dispose();
-
-            return total/c;
-        }
-
-        public Int32 CantidadDeudores()
-        {
-            String datoLeido;
-            string[] vecDatos = new string[4];
-            int cantDeud = 0;
-
-            StreamReader AD = new StreamReader(NomArchivo);
-            datoLeido = AD.ReadLine();
-
-            while (datoLeido != null && Convert.ToInt32(vecDatos[2]) > 0)
-            {
-                vecDatos = datoLeido.Split(';');
-                cantDeud++;
-                datoLeido = AD.ReadLine();
-
             }
 
             AD.Close();
             AD.Dispose();
 
             return cantDeud;
+        
         }
-
-        public Decimal PromedioDeudores()
+        public Decimal TotalDeudaDeudores()
         {
-            string datoLeido;
+            String datoLeido;
             string[] vecDatos = new string[4];
             Decimal total = 0;
-            Int32 cant = 0;
-           
+
             StreamReader AD = new StreamReader(NomArchivo);
             datoLeido = AD.ReadLine();
 
             while (datoLeido != null)
             {
-                cant++;
                 vecDatos = datoLeido.Split(';');
-                total = total + Convert.ToDecimal(vecDatos[2]);
+
+                if (Convert.ToDecimal(vecDatos[2]) > 0)
+                {
+                    total = total + Convert.ToDecimal(vecDatos[2]);
+                }
+
                 datoLeido = AD.ReadLine();
             }
+
             AD.Close();
             AD.Dispose();
 
-            return total / cant;
+            return total;
+        }
+
+        public Decimal PromedioDeudores()
+        {
+            Int32 cantidad = CantidadDeudores();
+
+            if (cantidad == 0)
+            {
+                return 0;
+            }
+
+            return TotalDeudaDeudores() / cantidad;
         }
 
         public void GenerarReporte()
@@ -253,7 +284,7 @@ namespace pryArchivosLP2
 
             Reporte.WriteLine("Listado de clientes");
             Reporte.WriteLine("");
-            Reporte.WriteLine("Codigo,Nombre,deuda,limite");
+            Reporte.WriteLine("Codigo;Nombre;Deuda;Limite");
             //abrir
             StreamReader AD = new StreamReader(NomArchivo);
             //leer
@@ -287,7 +318,15 @@ namespace pryArchivosLP2
             Reporte.WriteLine(cantidad);
 
             Reporte.Write("Promedio de deuda ; ;");
-            Reporte.WriteLine(total/cantidad);
+
+            if (cantidad > 0)
+            {
+                Reporte.WriteLine(total / cantidad);
+            }
+            else
+            {
+                Reporte.WriteLine(0);
+            }
 
             Reporte.Close();
             Reporte.Dispose();
@@ -427,48 +466,6 @@ namespace pryArchivosLP2
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

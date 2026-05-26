@@ -20,9 +20,9 @@ namespace pryArchivosLP2
         clsArchivo Archi= new clsArchivo();
         private void frmDeudores_Load(object sender, EventArgs e)
         {
-            Archi.Listar(dgvClientes);
-            lblCantidadRTA.Text = Archi.CantidadClientes().ToString();
-            lblTotalDeudaRTA.Text = Archi.TotalDeuda().ToString();
+            Archi.ListarDeudores(dgvClientes);
+            lblCantidadRTA.Text = Archi.CantidadDeudores().ToString();
+            lblTotalDeudaRTA.Text = Archi.TotalDeudaDeudores().ToString();
             lblPromedioRTA.Text = Archi.PromedioDeudores().ToString();
         }
 

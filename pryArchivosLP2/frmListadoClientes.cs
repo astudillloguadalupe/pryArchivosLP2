@@ -22,7 +22,7 @@ namespace pryArchivosLP2
             Archi.Listar(dgvClientes);
             lblCantRTA.Text = Archi.CantidadClientes().ToString();
             lblTotalDeudaRTA.Text = Archi.TotalDeuda().ToString();
-            lblPromedioRTA.Text= Archi.PromedioDeudores().ToString();
+            lblPromedioRTA.Text = Archi.Promedio().ToString();
         }
 
         private void btnReportar_Click(object sender, EventArgs e)

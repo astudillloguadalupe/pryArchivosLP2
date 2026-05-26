@@ -26,7 +26,7 @@ namespace pryArchivosLP2
 
         private void Comprobar()
         {
-            if (txtCodigo.Text != "" && txtUsuario.Text != "" && txtDeuda.Text != "" && txtLimite.Text != "")
+            if (txtCodigo.Text != "" && txtNombre.Text != "" && txtDeuda.Text != "" && txtLimite.Text != "")
             {
                 btnCargar.Enabled = true;
             }
@@ -36,7 +36,7 @@ namespace pryArchivosLP2
             }
         }
 
-        private void txtUsuario_TextChanged(object sender, EventArgs e)
+        private void txtNombre_TextChanged(object sender, EventArgs e)
         {
             Comprobar();
         }
@@ -58,12 +58,12 @@ namespace pryArchivosLP2
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
-            Arc.Grabar(txtCodigo.Text, txtUsuario.Text, txtDeuda.Text, txtLimite.Text);
+            Arc.Grabar(txtCodigo.Text, txtNombre.Text, txtDeuda.Text, txtLimite.Text);
             MessageBox.Show("Datos Grabados");
 
             //Limpio los controles una vez que se hayan cargado
             txtCodigo.Text = "";
-            txtUsuario.Text = "";
+            txtNombre.Text = "";
             txtDeuda.Text = "";
             txtLimite.Text = "";
         }
