@@ -31,11 +31,7 @@ namespace pryArchivosLP2
             MessageBox.Show("Reporte generado correctamente");
         }
 
-        private void btnOrdenar_Click(object sender, EventArgs e)
-        {
-            Archi.OrdenarArchivo();
-            MessageBox.Show("Archivo Ordenado");
-            Archi.Listar(dgvClientes);
-        }
+        
+            
     }
 }

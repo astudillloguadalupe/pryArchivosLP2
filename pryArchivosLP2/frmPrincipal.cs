@@ -44,5 +44,11 @@ namespace pryArchivosLP2
         {
 
         }
+
+        private void listadoClientesOrdenadosPorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListadoOrdenadoClientes frmListadoOrdenadoClientes = new frmListadoOrdenadoClientes(); 
+            frmListadoOrdenadoClientes.ShowDialog();
+        }
     }
 }

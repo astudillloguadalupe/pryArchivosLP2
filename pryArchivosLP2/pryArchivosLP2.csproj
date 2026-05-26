@@ -59,6 +59,12 @@
     <Compile Include="frmListadoClientes.Designer.cs">
       <DependentUpon>frmListadoClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmListadoOrdenadoClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListadoOrdenadoClientes.Designer.cs">
+      <DependentUpon>frmListadoOrdenadoClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNuevosClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmListadoClientes.resx">
       <DependentUpon>frmListadoClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListadoOrdenadoClientes.resx">
+      <DependentUpon>frmListadoOrdenadoClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNuevosClientes.resx">
       <DependentUpon>frmNuevosClientes.cs</DependentUpon>

@@ -82,7 +82,7 @@ namespace pryArchivosLP2
                 AD.Write(";");
                 AD.Write(VecClientes[i].Deuda);
                 AD.Write(";");
-                AD.Write(VecClientes[i].Limite);
+                AD.WriteLine(VecClientes[i].Limite);
             }
                 //CERRAR
                 AD.Close();
@@ -294,6 +294,137 @@ namespace pryArchivosLP2
            
         }
 
+        public void OrdenarPorCodigoAsc()
+        {
+            CargarVector();
+
+            RegCliente aux;
+
+            for (Int32 c = 0; c < IND - 1; c++)
+            {
+                for (Int32 i = 0; i < IND - 1 - c; i++)
+                {
+                    if (VecClientes[i].Codigo > VecClientes[i + 1].Codigo)
+                    {
+                        aux = VecClientes[i];
+                        VecClientes[i] = VecClientes[i + 1];
+                        VecClientes[i + 1] = aux;
+                    }
+                }
+            }
+
+            ReescribirArchivo();
+        }
+
+        public void OrdenarPorCodigoDesc()
+        {
+            CargarVector();
+
+            RegCliente aux;
+
+            for (Int32 c = 0; c < IND - 1; c++)
+            {
+                for (Int32 i = 0; i < IND - 1 - c; i++)
+                {
+                    if (VecClientes[i].Codigo < VecClientes[i + 1].Codigo)
+                    {
+                        aux = VecClientes[i];
+                        VecClientes[i] = VecClientes[i + 1];
+                        VecClientes[i + 1] = aux;
+                    }
+                }
+            }
+
+            ReescribirArchivo();
+        }
+
+        public void OrdenarPorDeudaAsc()
+        {
+            CargarVector();
+
+            RegCliente aux;
+
+            for (Int32 c = 0; c < IND - 1; c++)
+            {
+                for (Int32 i = 0; i < IND - 1 - c; i++)
+                {
+                    if (VecClientes[i].Deuda > VecClientes[i + 1].Deuda)
+                    {
+                        aux = VecClientes[i];
+                        VecClientes[i] = VecClientes[i + 1];
+                        VecClientes[i + 1] = aux;
+                    }
+                }
+            }
+
+            ReescribirArchivo();
+        }
+
+        public void OrdenarPorDeudaDesc()
+        {
+            CargarVector();
+
+            RegCliente aux;
+
+            for (Int32 c = 0; c < IND - 1; c++)
+            {
+                for (Int32 i = 0; i < IND - 1 - c; i++)
+                {
+                    if (VecClientes[i].Deuda < VecClientes[i + 1].Deuda)
+                    {
+                        aux = VecClientes[i];
+                        VecClientes[i] = VecClientes[i + 1];
+                        VecClientes[i + 1] = aux;
+                    }
+                }
+            }
+
+            ReescribirArchivo();
+        }
+
+        public void OrdenarPorLimiteAsc()
+        {
+            CargarVector();
+
+            RegCliente aux;
+
+            for (Int32 c = 0; c < IND - 1; c++)
+            {
+                for (Int32 i = 0; i < IND - 1 - c; i++)
+                {
+                    if (VecClientes[i].Limite > VecClientes[i + 1].Limite)
+                    {
+                        aux = VecClientes[i];
+                        VecClientes[i] = VecClientes[i + 1];
+                        VecClientes[i + 1] = aux;
+                    }
+                }
+            }
+
+            ReescribirArchivo();
+        }
+
+        public void OrdenarPorLimiteDesc()
+        {
+            CargarVector();
+
+            RegCliente aux;
+
+            for (Int32 c = 0; c < IND - 1; c++)
+            {
+                for (Int32 i = 0; i < IND - 1 - c; i++)
+                {
+                    if (VecClientes[i].Limite < VecClientes[i + 1].Limite)
+                    {
+                        aux = VecClientes[i];
+                        VecClientes[i] = VecClientes[i + 1];
+                        VecClientes[i + 1] = aux;
+                    }
+                }
+            }
+
+            ReescribirArchivo();
+        }
 
 
 
