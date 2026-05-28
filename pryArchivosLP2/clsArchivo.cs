@@ -27,6 +27,8 @@ namespace pryArchivosLP2
 
         private void CargarVector()
         {
+            CrearArchivoSiNoExiste();
+
             string datoLeido;
             string[] vecDatos = new string[4];
             IND = 0;
@@ -99,6 +101,7 @@ namespace pryArchivosLP2
 
         public void Grabar(string cod, string nom, string deu, string lim)
         {
+            CrearArchivoSiNoExiste();
             //ABRIR
             StreamWriter AD = new StreamWriter(NomArchivo, true); //Quiere decir que ya existen datos
 
@@ -118,6 +121,8 @@ namespace pryArchivosLP2
         //Procedimiento para mostrar clientes en una grilla
         public void Listar(DataGridView Grilla)
         {
+            CrearArchivoSiNoExiste();
+
             String datoLeido;
             string[] vecDatos = new string[4];
 
@@ -139,6 +144,8 @@ namespace pryArchivosLP2
 
         public Int32 CantidadClientes()
         {
+            CrearArchivoSiNoExiste();
+
             string datoLeido;
             Int32 c = 0;
 
@@ -155,6 +162,8 @@ namespace pryArchivosLP2
         }
         public Decimal TotalDeuda()
         {
+            CrearArchivoSiNoExiste();
+
             string datoLeido;
             string[] vecDatos = new string[4];
             Decimal Total = 0;
@@ -184,6 +193,8 @@ namespace pryArchivosLP2
         }
         public void ListarDeudores(DataGridView Grilla)
         {
+            CrearArchivoSiNoExiste(); 
+
             String datoLeido;
             string[] vecDatos = new string[4];
 
@@ -209,6 +220,8 @@ namespace pryArchivosLP2
         }
         public Int32 CantidadDeudores()
         {
+            CrearArchivoSiNoExiste();
+
             String datoLeido;
             string[] vecDatos = new string[4];
             Int32 cantDeud = 0;
@@ -236,6 +249,8 @@ namespace pryArchivosLP2
         }
         public Decimal TotalDeudaDeudores()
         {
+            CrearArchivoSiNoExiste();
+
             String datoLeido;
             string[] vecDatos = new string[4];
             Decimal total = 0;
@@ -275,6 +290,8 @@ namespace pryArchivosLP2
 
         public void GenerarReporte()
         {
+            CrearArchivoSiNoExiste();
+
             string datoLeido;
             string[] vecDatos = new string[4];
             Decimal total = 0;
@@ -284,7 +301,7 @@ namespace pryArchivosLP2
 
             Reporte.WriteLine("Listado de clientes");
             Reporte.WriteLine("");
-            Reporte.WriteLine("Codigo;Nombre;Deuda;Limite");
+            Reporte.WriteLine("Codigo,Nombre,Deuda,Limite");
             //abrir
             StreamReader AD = new StreamReader(NomArchivo);
             //leer
@@ -311,13 +328,16 @@ namespace pryArchivosLP2
             AD.Close();
             AD.Dispose();
             Reporte.WriteLine(); //esapacio entre medio
-            Reporte.Write("TotalDeuda: ; ;");
+            Reporte.Write("TotalDeuda:;");
+            Reporte.Write(";");
             Reporte.WriteLine(total);
 
-            Reporte.Write("Cantidad de clientes ; ;");
+            Reporte.Write("Cantidad de clientes:;");
+            Reporte.Write(";");
             Reporte.WriteLine(cantidad);
 
-            Reporte.Write("Promedio de deuda ; ;");
+            Reporte.Write("Promedio de deuda:;");
+            Reporte.Write(";");
 
             if (cantidad > 0)
             {
@@ -331,6 +351,15 @@ namespace pryArchivosLP2
             Reporte.Close();
             Reporte.Dispose();
            
+        }
+        private void CrearArchivoSiNoExiste()
+        {
+            if (!File.Exists(NomArchivo))
+            {
+                StreamWriter AD = new StreamWriter(NomArchivo, false);
+                AD.Close();
+                AD.Dispose();
+            }
         }
 
         public void OrdenarPorCodigoAsc()
